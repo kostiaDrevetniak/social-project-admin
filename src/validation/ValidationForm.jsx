@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import TextField from "../components/TextField";
-import TextArea from "../components/TextArea";
-import CategorySelector from "../components/CategorySelector";
-import DateTimeInput from "../components/DateTimeField";
-import CurencyField from "../components/CurencyField";
+import TextField from "../components/form/TextField";
+import TextArea from "../components/form/TextArea";
+import CategorySelector from "../components/form/CategorySelector";
+import DateTimeInput from "../components/form/DateTimeField";
+import CurencyField from "../components/form/CurencyField";
 
 function ValidationForm({ data, categories, setData }) {
 

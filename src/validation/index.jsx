@@ -1,8 +1,9 @@
+import ApplicationHeader from "../components/menu/ApplicationHeader";
 import ValidationForm from "./ValidationForm";
 import React, { useState } from "react";
 
 const Validation = () => {
-    const [lable, setLable] = useState("День кар'єри");
+  const [lable, setLable] = useState("День кар'єри");
   const [text, setText] = useState(
     "Настав час знайти собі роботу! \n\n" +
       "І Молодіжний Центр може вам з цим допомогти, адже зовсім скоро відбудеться День Кар'єри!\n\n" +
@@ -38,9 +39,12 @@ const Validation = () => {
     href: "https://cutt.ly/a4Huoe6",
   });
 
-  return(
-    <ValidationForm data={data} categories={categories} setData={setData}/>
+  return (
+    <>
+      <ApplicationHeader />
+      <ValidationForm data={data} categories={categories} setData={setData} />
+    </>
   );
-}
+};
 
 export default Validation;
