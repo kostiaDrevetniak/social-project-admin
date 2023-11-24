@@ -54,10 +54,24 @@ function ValidationForm({ data, categories, setData }) {
             {...register("categories")}
             control={control}
           />
-          <div> 
-            <input type="submit" value="Записати" className="btn btn-outline-primary mx-2"/>
-            <button onClick={console.log("delete")} className="btn btn-outline-danger mx-1">Видалити</button>
-            <button onClick={useNavigate("/validation")} className="btn btn-outline-secondary mx-2">Повернутись</button>
+          <div>
+            <input
+              type="submit"
+              value="Записати"
+              className="btn btn-outline-primary mx-2"
+            />
+            <button
+              onClick={console.log("delete")}
+              className="btn btn-outline-danger mx-1"
+            >
+              Видалити
+            </button>
+            <button
+              onClick={useNavigate("/validation")}
+              className="btn btn-outline-secondary mx-2"
+            >
+              Повернутись
+            </button>
           </div>
         </div>
       </form>

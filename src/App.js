@@ -1,14 +1,10 @@
 import "./App.css";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Outlet,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Validation from "./validation";
 import MainPage from "./main";
 import AuthentificationPage from "./authentication/AuthentificationPage";
-import AnouncmentList from "./validation/AnouncmentList";
+import AnnouncementList from "./validation/AnnouncementList";
+import Announcements from "./announcement";
 
 function App() {
   return (
@@ -17,10 +13,14 @@ function App() {
         <Route path="/" element={<Outlet />}>
           <Route index element={<AuthentificationPage />} />
         </Route>
-        <Route path="main" element={<MainPage />}/>
+        <Route path="home" element={<MainPage />} />
         <Route path="validation" element={<Outlet />}>
-          <Route index element={<AnouncmentList />}/>
-          <Route path=":id" element={<Validation/>}/>
+          <Route index element={<AnnouncementList />} />
+          <Route path=":id" element={<Validation />} />
+        </Route>
+        <Route path="announcements" element={<Outlet />}>
+          <Route index element={<Announcements />} />
+          <Route path=":id" element={<Validation />} />
         </Route>
       </Routes>
     </BrowserRouter>
