@@ -2,9 +2,10 @@ import React from "react";
 import Select from "react-select";
 import { Controller } from "react-hook-form";
 
-const CategorySelector = ({ categories, control }) => {
+const CategorySelector = ({ label, categories, control }) => {
   return (
-    <div>
+    <div className="form-group my-2">
+      <label className="control-label">{label}</label>
       <Controller
         name="categories"
         control={control}

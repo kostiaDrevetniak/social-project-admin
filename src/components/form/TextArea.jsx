@@ -3,13 +3,13 @@ import "./style/style.css";
 
 const TextArea = forwardRef(({ lable, rows, cols, ...props }, ref) => {
   return (
-    <div>
-      <lable>{lable}</lable>
+    <div className="form-group my-2">
+      <label className="control-label">{lable}</label>
       <textarea
         rows={rows}
         cols={cols}
         required="required"
-        className="no-resize"
+        className="no-resize form-control"
         ref={ref}
         {...props}
       />

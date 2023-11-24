@@ -8,6 +8,7 @@ import {
 import Validation from "./validation";
 import MainPage from "./main";
 import AuthentificationPage from "./authentication/AuthentificationPage";
+import AnouncmentList from "./validation/AnouncmentList";
 
 function App() {
   return (
@@ -16,11 +17,10 @@ function App() {
         <Route path="/" element={<Outlet />}>
           <Route index element={<AuthentificationPage />} />
         </Route>
-        <Route path="/main" element={<Outlet />}>
-          <Route index element={<MainPage />}/>
-        </Route>
-        <Route path="/validation" element={<Outlet />}>
-          <Route index element={<Validation />}/>
+        <Route path="main" element={<MainPage />}/>
+        <Route path="validation" element={<Outlet />}>
+          <Route index element={<AnouncmentList />}/>
+          <Route path=":id" element={<Validation/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

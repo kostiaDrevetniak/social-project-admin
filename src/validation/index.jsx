@@ -1,8 +1,13 @@
 import ApplicationHeader from "../components/menu/ApplicationHeader";
 import ValidationForm from "./ValidationForm";
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
 const Validation = () => {
+  const pathParam = useParams();
+
+  console.log(pathParam.id);
+
   const [lable, setLable] = useState("День кар'єри");
   const [text, setText] = useState(
     "Настав час знайти собі роботу! \n\n" +
