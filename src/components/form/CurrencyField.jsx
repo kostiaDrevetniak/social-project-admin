@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 
-const CurencyField = forwardRef(({ label, ...props }, ref) => {
+const CurrencyField = forwardRef(({ label, ...props }, ref) => {
   return (
     <div className="form-group my-2">
       <label className="control-label">{label}</label>
@@ -16,4 +16,4 @@ const CurencyField = forwardRef(({ label, ...props }, ref) => {
   );
 });
 
-export default CurencyField;
+export default CurrencyField;

@@ -1,11 +1,10 @@
 import React from "react";
-import ApplicationHeader from "../components/menu/ApplicationHeader";
 import TextField from "../components/form/TextField";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import PasswordField from "../components/form/PasswordField";
 
-const AuthentificationPage = () => {
+const AuthenticationPage = () => {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
 
@@ -25,7 +24,7 @@ const AuthentificationPage = () => {
         </div>
         <div className="row justify-content-center">
           <form onSubmit={handleSubmit(onSubmit)} className="form w-25">
-            <TextField label="Логін" {...register("loggin")} />
+            <TextField label="Логін" {...register("login")} />
             <PasswordField label="Пароль" {...register("password")} />
             <div className="form-group my-2">
               <input
@@ -41,4 +40,4 @@ const AuthentificationPage = () => {
   );
 };
 
-export default AuthentificationPage;
+export default AuthenticationPage;

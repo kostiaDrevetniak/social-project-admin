@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Validation from "./validation";
 import MainPage from "./main";
-import AuthentificationPage from "./authentication/AuthentificationPage";
+import AuthenticationPage from "./authentication/AuthenticationPage";
 import AnnouncementList from "./validation/AnnouncementList";
 import Announcements from "./announcement";
 
@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Outlet />}>
-          <Route index element={<AuthentificationPage />} />
+          <Route index element={<AuthenticationPage />} />
         </Route>
         <Route path="home" element={<MainPage />} />
         <Route path="validation" element={<Outlet />}>

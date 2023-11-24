@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ApplicationHeader from "../components/menu/ApplicationHeader";
 import Announcement from "../components/table/Announcement";
 

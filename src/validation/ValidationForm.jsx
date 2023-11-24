@@ -4,7 +4,7 @@ import TextField from "../components/form/TextField";
 import TextArea from "../components/form/TextArea";
 import CategorySelector from "../components/form/CategorySelector";
 import DateTimeInput from "../components/form/DateTimeField";
-import CurencyField from "../components/form/CurencyField";
+import CurrencyField from "../components/form/CurrencyField";
 import { useNavigate } from "react-router";
 
 function ValidationForm({ data, categories, setData }) {
@@ -28,10 +28,10 @@ function ValidationForm({ data, categories, setData }) {
         className="form d-flex justify-content-between"
       >
         <div>
-          <TextField label="Заголовок" {...register("lable")} />
+          <TextField label="Заголовок" {...register("label")} />
           <TextField label="Організатор" {...register("organizer")} />
           <TextArea
-            lable="Текст оголошення"
+            label="Текст оголошення"
             rows="27"
             cols="70"
             {...register("text")}
@@ -39,14 +39,14 @@ function ValidationForm({ data, categories, setData }) {
         </div>
         <div className="d-flex flex-column w-50">
           <div className="d-flex justify-content-center">
-            <img src="../logo512.png" width={400} height={400} />
+            <img src="../logo512.png" width={400} height={400} alt="Зображення оголошення"/>
           </div>
           <TextField label="Локація" {...register("location")} />
           <DateTimeInput
             label="Дата і час проведення"
             {...register("startDate")}
           />
-          <CurencyField label="Ціна участі" {...register("price")} />
+          <CurrencyField label="Ціна участі" {...register("price")} />
           <TextField label="Посилання для реєстрації" {...register("href")} />
           <CategorySelector
             label="Категорії"

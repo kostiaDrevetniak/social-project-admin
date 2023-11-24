@@ -8,7 +8,7 @@ const Validation = () => {
 
   console.log(pathParam.id);
 
-  const [lable, setLable] = useState("День кар'єри");
+  const [label, setLable] = useState("День кар'єри");
   const [text, setText] = useState(
     "Настав час знайти собі роботу! \n\n" +
       "І Молодіжний Центр може вам з цим допомогти, адже зовсім скоро відбудеться День Кар'єри!\n\n" +
@@ -34,7 +34,7 @@ const Validation = () => {
   ]);
 
   const [data, setData] = useState({
-    lable: lable,
+    label: label,
     text: text,
     categories: [],
     organizer: "Молодіжний центр Тернополя",
