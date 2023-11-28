@@ -6,7 +6,7 @@ const Announcement = ({ announcement, link }) => {
     <tr>
       <td>{announcement.id}</td>
       <td>{announcement.label}</td>
-      <td>{announcement.organizer}</td>
+      <td>{announcement.companyName}</td>
       <td>{announcement.creationDate}</td>
       <td>{announcement.startDate}</td>
       <td>

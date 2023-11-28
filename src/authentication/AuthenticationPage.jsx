@@ -10,7 +10,7 @@ const AuthenticationPage = () => {
 
   function onSubmit(data) {
     console.log(data);
-    navigate("/main");
+    navigate("/home");
     reset();
   }
 

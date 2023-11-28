@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ApplicationHeader from "../components/menu/ApplicationHeader";
 import Announcement from "../components/table/Announcement";
 
+async function getTitles() {
+  let titles;
+  await fetch("http://localhost:8080/api/announcement/unchecked")
+    .then((response) => response.json())
+    .then((data) => (titles = data));
+  return titles;
+}
+
 const AnnouncementList = () => {
-  const announcements = [
-    { id: 0, organizer: "Молодіжний центр", creationDate: "2023-05-20T14:00" },
-    { id: 1, organizer: "Молодіжний центр", creationDate: "2023-05-29T14:00" },
-    { id: 2, organizer: "Молодіжний центр", creationDate: "2023-05-13T14:00" },
-  ];
+  const [announcements, setAnnouncements] = useState([]);
+
+  useEffect(() => {
+    getTitles().then((data) => setAnnouncements(data));
+  }, []);
 
   return (
     <>
@@ -16,14 +24,14 @@ const AnnouncementList = () => {
         <h3 className="py-3">Список оголошень що потребують перевірки</h3>
         <table className="table">
           <thead>
-            <tr>
+            <tr className="text-center">
               <th colSpan={2}>Id</th>
               <th>Організатор</th>
               <th colSpan={2}>Дата створення</th>
               <th>Операції</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-center">
             {announcements.map((announcement) => (
               <Announcement announcement={announcement} link={""} />
             ))}

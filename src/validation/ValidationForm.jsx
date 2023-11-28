@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import TextField from "../components/form/TextField";
 import TextArea from "../components/form/TextArea";
@@ -10,9 +10,17 @@ import { useNavigate } from "react-router";
 function ValidationForm({ data, categories, setData }) {
   const navigate = useNavigate();
 
+console.log(data);
+
   const { register, handleSubmit, reset, control } = useForm({
     defaultValues: data,
   });
+
+  useEffect(() => {
+    reset(data);
+  }, []);
+
+  console.log(data);
 
   function onSubmit(data) {
     console.log(data);
@@ -20,6 +28,7 @@ function ValidationForm({ data, categories, setData }) {
     navigate("/validation");
     // reset(data);
   }
+
 
   return (
     <div className="container ">
@@ -29,12 +38,12 @@ function ValidationForm({ data, categories, setData }) {
       >
         <div>
           <TextField label="Заголовок" {...register("label")} />
-          <TextField label="Організатор" {...register("organizer")} />
+          <TextField label="Організатор" {...register("companyName")} />
           <TextArea
             label="Текст оголошення"
             rows="27"
             cols="70"
-            {...register("text")}
+            {...register("description")}
           />
         </div>
         <div className="d-flex flex-column w-50">
