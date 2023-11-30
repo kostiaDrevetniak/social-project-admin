@@ -1,41 +1,53 @@
-import ApplicationHeader from "../components/menu/ApplicationHeader";
-import ValidationForm from "./ValidationForm";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import ApplicationHeader from "../components/menu/ApplicationHeader";
+import Announcement from "../components/table/Announcement";
+import Filter from "../components/filter/Filter";
+import { getCompanyNames, getTitles } from "./helper/RequestHelper";
 
-async function getAnnouncement(id) {
-  let announcement;
-  await fetch("http://localhost:8080/api/announcement/unchecked/" + id)
-    .then((response) => response.json())
-    .then((data) => (announcement = data));
-  return announcement;
-}
-
-const Validation = () => {
-  const pathParam = useParams();
-
-  const [data, setData] = useState({});
+const AnnouncementList = () => {
+  const [announcements, setAnnouncements] = useState([]);
+  const [companiesName, setCompaniesName] = useState([]);
 
   useEffect(() => {
-    getAnnouncement(pathParam.id).then((data) => setData(data));
+    getTitles("Всі").then((data) => setAnnouncements(data));
+    getCompanyNames().then((data) => setCompaniesName(data));
   }, []);
 
-  console.log(data);
-
-  const [categories, setCategories] = useState([
-    { value: "робота", label: "Робота" },
-    { value: "навчання", label: "Навчання" },
-    { value: "обмін", label: "Обмін" },
-    { value: "література", label: "Література" },
-    { value: "розваги", label: "Розваги" },
-  ]);
+  function onFilterChange(e) {
+    var index = e.target.selectedIndex;
+    getTitles(e.target[index].text).then((data) => setAnnouncements(data));
+  }
 
   return (
     <>
       <ApplicationHeader />
-      <ValidationForm data={data} categories={categories} setData={setData} />
+      <div className="container w-75">
+        <div>
+          <h3 className="py-3">Список оголошень що потребують перевірки</h3>
+          <Filter
+            label={"Назва організатора"}
+            data={companiesName}
+            change={onFilterChange}
+          />
+        </div>
+        <table className="table">
+          <thead>
+            <tr className="text-center">
+              <th colSpan={2}>Id</th>
+              <th>Організатор</th>
+              <th colSpan={2}>Дата створення</th>
+              <th>Операції</th>
+            </tr>
+          </thead>
+          <tbody className="text-center">
+            {announcements.map((announcement, index) => (
+              <Announcement announcement={announcement} link={""} key={index} />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };
 
-export default Validation;
+export default AnnouncementList;

@@ -6,29 +6,34 @@ import CategorySelector from "../components/form/CategorySelector";
 import DateTimeInput from "../components/form/DateTimeField";
 import CurrencyField from "../components/form/CurrencyField";
 import { useNavigate } from "react-router";
+import ImageField from "../components/form/ImageField";
+import { createAnnouncement, deleteAnnouncement } from "./helper/RequestHelper";
 
 function ValidationForm({ data, categories, setData }) {
   const navigate = useNavigate();
 
-console.log(data);
-
-  const { register, handleSubmit, reset, control } = useForm({
-    defaultValues: data,
-  });
+  const { register, handleSubmit, reset, control, setValue } = useForm({});
 
   useEffect(() => {
+    console.log(data);
     reset(data);
   }, []);
 
-  console.log(data);
-
   function onSubmit(data) {
     console.log(data);
-    setData(data);
+    data.id = "";
+    createAnnouncement(data);
     navigate("/validation");
-    // reset(data);
   }
 
+  function returnToPreviousPage() {
+    navigate("/validation");
+  }
+
+  const callDelete = () => {
+    deleteAnnouncement(data.id);
+    returnToPreviousPage();
+  };
 
   return (
     <div className="container ">
@@ -37,7 +42,7 @@ console.log(data);
         className="form d-flex justify-content-between"
       >
         <div>
-          <TextField label="Заголовок" {...register("label")} />
+          <TextField label="Заголовок" {...register("title")} />
           <TextField label="Організатор" {...register("companyName")} />
           <TextArea
             label="Текст оголошення"
@@ -48,20 +53,23 @@ console.log(data);
         </div>
         <div className="d-flex flex-column w-50">
           <div className="d-flex justify-content-center">
-            <img src="../logo512.png" width={400} height={400} alt="Зображення оголошення"/>
+            <ImageField imageBytes={data.image} setValue={setValue} />
           </div>
-          <TextField label="Локація" {...register("location")} />
-          <DateTimeInput
-            label="Дата і час проведення"
-            {...register("startDate")}
-          />
-          <CurrencyField label="Ціна участі" {...register("price")} />
-          <TextField label="Посилання для реєстрації" {...register("href")} />
           <CategorySelector
             label="Категорії"
             categories={categories}
             {...register("categories")}
             control={control}
+          />
+          <TextField label="Локація" {...register("location")} />
+          <DateTimeInput
+            label="Дата і час проведення"
+            {...register("startTime")}
+          />
+          <CurrencyField label="Ціна участі" {...register("price")} />
+          <TextField
+            label="Посилання для реєстрації"
+            {...register("registrationLink")}
           />
           <div>
             <input
@@ -70,13 +78,15 @@ console.log(data);
               className="btn btn-outline-primary mx-2"
             />
             <button
-              onClick={console.log("delete")}
+              onClick={callDelete}
+              type="button"
               className="btn btn-outline-danger mx-1"
             >
               Видалити
             </button>
             <button
-              onClick={useNavigate("/validation")}
+              type="button"
+              onClick={returnToPreviousPage}
               className="btn btn-outline-secondary mx-2"
             >
               Повернутись

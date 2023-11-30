@@ -1,9 +1,9 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import Validation from "./validation";
-import MainPage from "./main";
+import Validation from "./validation/Validation";
+import MainPage from "./main/index";
 import AuthenticationPage from "./authentication/AuthenticationPage";
-import AnnouncementList from "./validation/AnnouncementList";
+import AnnouncementList from "./validation/index";
 import Announcements from "./announcement";
 
 function App() {

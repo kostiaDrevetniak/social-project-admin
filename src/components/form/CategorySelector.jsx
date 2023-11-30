@@ -13,7 +13,6 @@ const CategorySelector = ({ label, categories, control }) => {
           const currentSelection = categories.find((c) => c.value === value);
 
           const handleSelectChange = (selectedOption) => {
-            console.log(selectedOption.value);
             onChange(selectedOption);
           };
 
