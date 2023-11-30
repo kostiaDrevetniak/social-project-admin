@@ -4,10 +4,10 @@ import Announcement from "../components/table/Announcement";
 import Filter from "../components/filter/Filter";
 import {
   deleteAnnouncement,
-  getCompanyNames,
   getTitles,
 } from "./helper/RequestHelper";
 import { Link } from "react-router-dom";
+import { getCompanyNames } from "../helper/RequestHelper";
 
 const AnnouncementList = () => {
   const [announcements, setAnnouncements] = useState([]);
@@ -19,7 +19,7 @@ const AnnouncementList = () => {
   }, []);
 
   function onFilterChange(e) {
-    var index = e.target.selectedIndex;
+    const index = e.target.selectedIndex;
     getTitles(e.target[index].text).then((data) => setAnnouncements(data));
   }
 

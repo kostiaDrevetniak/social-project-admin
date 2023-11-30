@@ -7,21 +7,13 @@ import DateTimeInput from "./field/DateTimeField";
 import CurrencyField from "./field/CurrencyField";
 import { useNavigate } from "react-router";
 import ImageField from "./field/ImageField";
-import { createAnnouncement } from "../../validation/helper/RequestHelper";
 
-function AnnouncementForm({ data, categories, basePage }) {
+function AnnouncementForm({ data, categories, basePage, onSubmit }) {
   const navigate = useNavigate();
 
   const { register, handleSubmit, reset, control, setValue } = useForm({
     defaultValues: data,
   });
-
-  function onSubmit(data) {
-    console.log(data);
-    data.id = "";
-    createAnnouncement(data);
-    navigate(basePage);
-  }
 
   function returnToPreviousPage() {
     navigate(basePage);

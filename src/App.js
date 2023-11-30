@@ -5,6 +5,8 @@ import MainPage from "./main/index";
 import AuthenticationPage from "./authentication/AuthenticationPage";
 import AnnouncementList from "./validation/index";
 import Announcements from "./announcement";
+import EditAnnouncement from "./announcement/EditAnnouncement";
+import CreateAnnouncement from "./announcement/CreateAnnouncement";
 
 function App() {
   return (
@@ -20,7 +22,8 @@ function App() {
         </Route>
         <Route path="announcements" element={<Outlet />}>
           <Route index element={<Announcements />} />
-          <Route path=":id" element={<Validation />} />
+          <Route path=":id" element={<EditAnnouncement />} />
+          <Route path="create" element={<CreateAnnouncement />} />
         </Route>
       </Routes>
     </BrowserRouter>

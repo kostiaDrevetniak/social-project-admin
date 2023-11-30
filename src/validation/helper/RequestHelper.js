@@ -18,22 +18,6 @@ export const getAnnouncement = async (id) => {
   return announcement;
 };
 
-export const getAllCategories = async () => {
-  let categories = [];
-  await fetch("http://localhost:8080/api/category/all")
-    .then((response) => response.json())
-    .then((data) => {
-      data.forEach((category) => {
-        const tempCategory = {
-          value: category.id,
-          label: category.name,
-        };
-        categories.push(tempCategory);
-      });
-    });
-  return categories;
-};
-
 export const getTitles = async (companyName) => {
   if (companyName === "Всі") companyName = "/all";
   else companyName = "?company-name=" + companyName;
@@ -44,17 +28,10 @@ export const getTitles = async (companyName) => {
   return titles;
 };
 
-export const getCompanyNames = async () => {
-  let companies;
-  await fetch("http://localhost:8080/api/company/all")
-    .then((response) => response.json())
-    .then((data) => (companies = data));
-  return companies;
-};
-
-export const deleteAnnouncement = async (id) => {''
+export const deleteAnnouncement = async (id) => {
+  "";
   await fetch("http://localhost:8080/api/announcement/unchecked/" + id, {
-    method: "DELETE"
-  })
+    method: "DELETE",
+  });
   // .then((response) => console.log(response));
 };
