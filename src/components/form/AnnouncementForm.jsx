@@ -1,15 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import TextField from "../components/form/field/TextField";
-import TextAreaField from "../components/form/field/TextAreaField";
-import CategoryField from "../components/form/field/CategoryField";
-import DateTimeInput from "../components/form/field/DateTimeField";
-import CurrencyField from "../components/form/field/CurrencyField";
+import TextField from "./field/TextField";
+import TextAreaField from "./field/TextAreaField";
+import CategoryField from "./field/CategoryField";
+import DateTimeInput from "./field/DateTimeField";
+import CurrencyField from "./field/CurrencyField";
 import { useNavigate } from "react-router";
-import ImageField from "../components/form/field/ImageField";
-import { createAnnouncement } from "./helper/RequestHelper";
+import ImageField from "./field/ImageField";
+import { createAnnouncement } from "../../validation/helper/RequestHelper";
 
-function ValidationForm({ data, categories }) {
+function AnnouncementForm({ data, categories, basePage }) {
   const navigate = useNavigate();
 
   const { register, handleSubmit, reset, control, setValue } = useForm({
@@ -20,11 +20,11 @@ function ValidationForm({ data, categories }) {
     console.log(data);
     data.id = "";
     createAnnouncement(data);
-    navigate("/validation");
+    navigate(basePage);
   }
 
   function returnToPreviousPage() {
-    navigate("/validation");
+    navigate(basePage);
   }
 
   const resetValue = () => {
@@ -94,4 +94,4 @@ function ValidationForm({ data, categories }) {
   );
 }
 
-export default ValidationForm;
+export default AnnouncementForm;

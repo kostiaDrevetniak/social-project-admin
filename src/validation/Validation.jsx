@@ -1,5 +1,5 @@
 import ApplicationHeader from "../components/menu/ApplicationHeader";
-import ValidationForm from "./ValidationForm";
+import AnnouncementForm from "../components/form/AnnouncementForm";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getAllCategories, getAnnouncement } from "./helper/RequestHelper";
@@ -19,10 +19,10 @@ const Validation = () => {
     announcement && (
       <>
         <ApplicationHeader />
-        <ValidationForm
+        <AnnouncementForm
           data={announcement}
           categories={categories}
-          setData={setAnnouncement}
+          basePage={"/validation"}
         />
       </>
     )
