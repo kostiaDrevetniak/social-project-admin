@@ -1,11 +1,11 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import Select from "react-select";
 import { Controller } from "react-hook-form";
+import FieldLabel from "../FieldLabel";
 
-const CategorySelector = ({ label, categories, control }) => {
+const CategoryField = forwardRef(({ label, categories, control }) => {
   return (
-    <div className="form-group my-2">
-      <label className="control-label">{label}</label>
+    <FieldLabel label={label}>
       <Controller
         name="categories"
         control={control}
@@ -28,8 +28,8 @@ const CategorySelector = ({ label, categories, control }) => {
           );
         }}
       />
-    </div>
+    </FieldLabel>
   );
-};
+});
 
-export default CategorySelector;
+export default CategoryField;

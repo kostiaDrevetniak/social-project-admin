@@ -1,23 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import TextField from "../components/form/TextField";
-import TextArea from "../components/form/TextArea";
-import CategorySelector from "../components/form/CategorySelector";
-import DateTimeInput from "../components/form/DateTimeField";
-import CurrencyField from "../components/form/CurrencyField";
+import TextField from "../components/form/field/TextField";
+import TextAreaField from "../components/form/field/TextAreaField";
+import CategoryField from "../components/form/field/CategoryField";
+import DateTimeInput from "../components/form/field/DateTimeField";
+import CurrencyField from "../components/form/field/CurrencyField";
 import { useNavigate } from "react-router";
-import ImageField from "../components/form/ImageField";
-import { createAnnouncement, deleteAnnouncement } from "./helper/RequestHelper";
+import ImageField from "../components/form/field/ImageField";
+import { createAnnouncement } from "./helper/RequestHelper";
 
-function ValidationForm({ data, categories, setData }) {
+function ValidationForm({ data, categories }) {
   const navigate = useNavigate();
 
-  const { register, handleSubmit, reset, control, setValue } = useForm({});
-
-  useEffect(() => {
-    console.log(data);
-    reset(data);
-  }, []);
+  const { register, handleSubmit, reset, control, setValue } = useForm({
+    defaultValues: data,
+  });
 
   function onSubmit(data) {
     console.log(data);
@@ -30,9 +27,9 @@ function ValidationForm({ data, categories, setData }) {
     navigate("/validation");
   }
 
-  const callDelete = () => {
-    deleteAnnouncement(data.id);
-    returnToPreviousPage();
+  const resetValue = () => {
+    console.log("reset");
+    reset(data);
   };
 
   return (
@@ -44,7 +41,7 @@ function ValidationForm({ data, categories, setData }) {
         <div>
           <TextField label="Заголовок" {...register("title")} />
           <TextField label="Організатор" {...register("companyName")} />
-          <TextArea
+          <TextAreaField
             label="Текст оголошення"
             rows="27"
             cols="70"
@@ -55,11 +52,11 @@ function ValidationForm({ data, categories, setData }) {
           <div className="d-flex justify-content-center">
             <ImageField imageBytes={data.image} setValue={setValue} />
           </div>
-          <CategorySelector
+          <CategoryField
             label="Категорії"
             categories={categories}
-            {...register("categories")}
             control={control}
+            {...register("categories")}
           />
           <TextField label="Локація" {...register("location")} />
           <DateTimeInput
@@ -77,13 +74,12 @@ function ValidationForm({ data, categories, setData }) {
               value="Записати"
               className="btn btn-outline-primary mx-2"
             />
-            <button
-              onClick={callDelete}
+            <input
               type="button"
+              onClick={resetValue}
+              value={"Скинути"}
               className="btn btn-outline-danger mx-1"
-            >
-              Видалити
-            </button>
+            />
             <button
               type="button"
               onClick={returnToPreviousPage}

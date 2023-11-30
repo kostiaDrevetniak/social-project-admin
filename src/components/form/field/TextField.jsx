@@ -1,11 +1,11 @@
 import React, { forwardRef } from "react";
+import FieldLabel from "../FieldLabel";
 
 const TextField = forwardRef(({ label, ...props }, ref) => {
   return (
-    <div className="form-group my-2">
-      <label className="control-label">{label}</label>
+    <FieldLabel label={label}>
       <input type="text" ref={ref} {...props} className="form-control" />
-    </div>
+    </FieldLabel>
   );
 });
 export default TextField;

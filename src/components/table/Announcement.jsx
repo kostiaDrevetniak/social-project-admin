@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-const Announcement = ({ announcement, link }) => {
+const Announcement = ({ announcement, children}) => {
   return (
     <tr>
       <td>{announcement.id}</td>
@@ -10,9 +9,7 @@ const Announcement = ({ announcement, link }) => {
       <td>{announcement.creationDate}</td>
       <td>{announcement.startDate}</td>
       <td>
-        <Link to={link + announcement.id}>
-          <button className="btn btn-info">Переглянути</button>
-        </Link>
+        {children}
       </td>
     </tr>
   );

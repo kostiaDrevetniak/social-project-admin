@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useState, useEffect } from "react";
-import { toBase64 } from "../../helper/ImageConverter";
+import { toBase64 } from "../../../helper/ImageConverter";
 
 const ImageField = forwardRef(({ imageBytes, setValue }) => {
   const fileInputRef = useRef({});

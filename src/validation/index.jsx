@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import ApplicationHeader from "../components/menu/ApplicationHeader";
 import Announcement from "../components/table/Announcement";
 import Filter from "../components/filter/Filter";
-import { getCompanyNames, getTitles } from "./helper/RequestHelper";
+import {
+  deleteAnnouncement,
+  getCompanyNames,
+  getTitles,
+} from "./helper/RequestHelper";
+import { Link } from "react-router-dom";
 
 const AnnouncementList = () => {
   const [announcements, setAnnouncements] = useState([]);
@@ -17,6 +22,11 @@ const AnnouncementList = () => {
     var index = e.target.selectedIndex;
     getTitles(e.target[index].text).then((data) => setAnnouncements(data));
   }
+
+  const callDelete = (id) => {
+    console.log("delete");
+    deleteAnnouncement(id);
+  };
 
   return (
     <>
@@ -41,7 +51,19 @@ const AnnouncementList = () => {
           </thead>
           <tbody className="text-center">
             {announcements.map((announcement, index) => (
-              <Announcement announcement={announcement} link={""} key={index} />
+              <Announcement announcement={announcement} key={index}>
+                <>
+                  <Link to={"" + announcement.id}>
+                    <button className="btn btn-info me-2">Переглянути</button>
+                  </Link>
+                  <input
+                    type="button"
+                    value="Видалити"
+                    className="btn btn-danger"
+                    onClick={() => callDelete(announcement.id)}
+                  />
+                </>
+              </Announcement>
             ))}
           </tbody>
         </table>

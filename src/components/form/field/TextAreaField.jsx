@@ -1,10 +1,10 @@
 import React, { forwardRef } from "react";
-import "./style/style.css";
+import "../style/style.css";
+import FieldLabel from "../FieldLabel";
 
-const TextArea = forwardRef(({ label, rows, cols, ...props }, ref) => {
+const TextAreaField = forwardRef(({ label, rows, cols, ...props }, ref) => {
   return (
-    <div className="form-group my-2">
-      <label className="control-label">{label}</label>
+    <FieldLabel label={label}>
       <textarea
         rows={rows}
         cols={cols}
@@ -13,8 +13,8 @@ const TextArea = forwardRef(({ label, rows, cols, ...props }, ref) => {
         ref={ref}
         {...props}
       />
-    </div>
+    </FieldLabel>
   );
 });
 
-export default TextArea;
+export default TextAreaField;

@@ -1,8 +1,8 @@
 import React from "react";
-import TextField from "../components/form/TextField";
+import TextField from "../components/form/field/TextField";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import PasswordField from "../components/form/PasswordField";
+import PasswordField from "../components/form/field/PasswordField";
 
 const AuthenticationPage = () => {
   const { register, handleSubmit, reset } = useForm();
