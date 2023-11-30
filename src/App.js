@@ -7,6 +7,9 @@ import AnnouncementList from "./validation/index";
 import Announcements from "./announcement";
 import EditAnnouncement from "./announcement/EditAnnouncement";
 import CreateAnnouncement from "./announcement/CreateAnnouncement";
+import CompaniesList from "./company";
+import EditCompany from "./company/EditCompany";
+import CreateCompany from "./company/CreateCompany";
 
 function App() {
   return (
@@ -24,6 +27,11 @@ function App() {
           <Route index element={<Announcements />} />
           <Route path=":id" element={<EditAnnouncement />} />
           <Route path="create" element={<CreateAnnouncement />} />
+        </Route>
+        <Route path="companies" element={<Outlet />}>
+          <Route index element={<CompaniesList />} />
+          <Route path=":id" element={<EditCompany />} />
+          <Route path="create" element={<CreateCompany />} />
         </Route>
       </Routes>
     </BrowserRouter>

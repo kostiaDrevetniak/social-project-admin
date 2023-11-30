@@ -22,6 +22,11 @@ const ApplicationHeader = () => {
                 Оголошення
               </Link>
             </li>
+            <li>
+              <Link to="/companies" className="nav-link">
+                Організації
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

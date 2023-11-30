@@ -17,22 +17,22 @@ const Announcements = () => {
     setAnnouncements([
       {
         id: 1,
-        label: "День кар'єри",
-        organizer: "Молодіжний центр",
+        title: "День кар'єри",
+        companyName: "Молодіжний центр",
         creationDate: "2023-05-20T14:00",
         startDate: "2023-05-27T14:00",
       },
       {
         id: 1,
-        label: "День кар'єри",
-        organizer: "Молодіжний центр",
+        title: "День кар'єри",
+        companyName: "Молодіжний центр",
         creationDate: "2023-05-20T14:00",
         startDate: "2023-05-27T14:00",
       },
       {
         id: 1,
-        label: "День кар'єри",
-        organizer: "Молодіжний центр",
+        title: "День кар'єри",
+        companyName: "Молодіжний центр",
         creationDate: "2023-05-20T14:00",
         startDate: "2023-05-27T14:00",
       },
