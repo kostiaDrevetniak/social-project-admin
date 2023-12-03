@@ -3,23 +3,22 @@ import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../helper/RequestHelper";
 import ApplicationHeader from "../components/menu/ApplicationHeader";
 import AnnouncementForm from "../components/form/AnnouncementForm";
+import { createAnnouncement } from "./helper/RequestHelper";
 
 const CreateAnnouncement = () => {
-  const navigate = useNavigate("");
-  const basePage = "/announcement";
+  const navigate = useNavigate();
+  const basePage = "/announcements";
 
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    // getAnnouncement(pathParam.id).then((data) => setAnnouncement(data));
     getAllCategories().then((data) => setCategories(data));
   }, []);
 
   function onSubmit(data) {
     console.log(data);
     data.id = "";
-    // createAnnouncement(data);
-    navigate(basePage);
+    createAnnouncement(data).then(() => navigate(basePage));
   }
 
   return (

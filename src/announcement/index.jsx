@@ -4,49 +4,26 @@ import Announcement from "../components/table/Announcement";
 import { Link, useNavigate } from "react-router-dom";
 import Filter from "../components/filter/Filter";
 import { getCompanyNames } from "../helper/RequestHelper";
+import { deleteAnnouncement, getTitles } from "./helper/RequestHelper";
 
 const Announcements = () => {
-  const navigate = useNavigate("");
+  const navigate = useNavigate();
 
   const [announcements, setAnnouncements] = useState([]);
   const [companiesName, setCompaniesName] = useState([]);
 
   useEffect(() => {
     getCompanyNames().then((data) => setCompaniesName(data));
-
-    setAnnouncements([
-      {
-        id: 1,
-        title: "День кар'єри",
-        companyName: "Молодіжний центр",
-        creationDate: "2023-05-20T14:00",
-        startDate: "2023-05-27T14:00",
-      },
-      {
-        id: 1,
-        title: "День кар'єри",
-        companyName: "Молодіжний центр",
-        creationDate: "2023-05-20T14:00",
-        startDate: "2023-05-27T14:00",
-      },
-      {
-        id: 1,
-        title: "День кар'єри",
-        companyName: "Молодіжний центр",
-        creationDate: "2023-05-20T14:00",
-        startDate: "2023-05-27T14:00",
-      },
-    ]);
+    getTitles("").then((data) => setAnnouncements(data));
   }, []);
 
   const onFilterChange = (e) => {
     const value = e.target.value;
-    console.log(value);
-    // getTitles(e.target[index].text).then((data) => setAnnouncements(data));
+    getTitles(value).then((data) => setAnnouncements(data));
   };
 
   const callDelete = (id) => {
-    console.log("delete");
+    deleteAnnouncement(id).then(() => navigate(0));
   };
 
   return (

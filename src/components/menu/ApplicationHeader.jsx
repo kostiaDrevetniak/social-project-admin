@@ -1,7 +1,15 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const ApplicationHeader = () => {
+
+  const navigate = useNavigate();
+
+  const logout = () => {
+    window.sessionStorage.setItem("token", "");
+    navigate(0);
+  } 
+
   return (
     <header className="bg-body-secondary">
       <div className="py-2">
@@ -28,6 +36,11 @@ const ApplicationHeader = () => {
               </Link>
             </li>
           </ul>
+          <div>
+            <button onClick={logout}>
+              Вийти
+            </button>
+          </div>
         </nav>
       </div>
     </header>

@@ -7,8 +7,8 @@ import { getAllCategories } from "../helper/RequestHelper";
 
 const Validation = () => {
   const pathParam = useParams();
-  const navigate = useNavigate("");
-  const basePage = "/validation"
+  const navigate = useNavigate();
+  const basePage = "/validation";
 
   const [announcement, setAnnouncement] = useState(null);
   const [categories, setCategories] = useState([]);
@@ -19,10 +19,8 @@ const Validation = () => {
   }, [pathParam.id]);
 
   function onSubmit(data) {
-    console.log(data);
     data.id = "";
-    createAnnouncement(data);
-    navigate(basePage);
+    createAnnouncement(data).then(() => navigate(basePage));
   }
 
   return (

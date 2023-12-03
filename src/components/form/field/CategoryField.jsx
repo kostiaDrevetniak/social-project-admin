@@ -10,7 +10,8 @@ const CategoryField = forwardRef(({ label, categories, control }) => {
         name="categories"
         control={control}
         render={({ field: { onChange, value, name, ref } }) => {
-          const currentSelection = categories.find((c) => c.value === value);
+          value = (value) ? value : [];
+          const currentSelection = categories.filter((c) => value.filter((e) => e.value === c.value).length > 0);
 
           const handleSelectChange = (selectedOption) => {
             onChange(selectedOption);

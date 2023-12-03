@@ -2,30 +2,27 @@ import React, { useState, useEffect } from "react";
 import ApplicationHeader from "../components/menu/ApplicationHeader";
 import Announcement from "../components/table/Announcement";
 import Filter from "../components/filter/Filter";
-import {
-  deleteAnnouncement,
-  getTitles,
-} from "./helper/RequestHelper";
-import { Link } from "react-router-dom";
+import { deleteAnnouncement, getTitles } from "./helper/RequestHelper";
+import { Link, useNavigate } from "react-router-dom";
 import { getCompanyNames } from "../helper/RequestHelper";
 
 const AnnouncementList = () => {
   const [announcements, setAnnouncements] = useState([]);
   const [companiesName, setCompaniesName] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getTitles("Всі").then((data) => setAnnouncements(data));
+    getTitles("").then((data) => setAnnouncements(data));
     getCompanyNames().then((data) => setCompaniesName(data));
   }, []);
 
   function onFilterChange(e) {
-    const index = e.target.selectedIndex;
-    getTitles(e.target[index].text).then((data) => setAnnouncements(data));
+    const id = e.target.value;
+    getTitles(id).then((data) => setAnnouncements(data));
   }
 
   const callDelete = (id) => {
-    console.log("delete");
-    deleteAnnouncement(id);
+    deleteAnnouncement(id).then(() => navigate(0));
   };
 
   return (

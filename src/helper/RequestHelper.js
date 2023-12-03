@@ -1,6 +1,8 @@
 export const getAllCategories = async () => {
   let categories = [];
-  await fetch("http://localhost:8080/api/category/all")
+  await fetch("http://localhost:8080/api/category/all", {
+    headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` },
+  })
     .then((response) => response.json())
     .then((data) => {
       data.forEach((category) => {
@@ -15,9 +17,10 @@ export const getAllCategories = async () => {
 };
 
 export const getCompanyNames = async () => {
-  let companies;
-  await fetch("http://localhost:8080/api/company/all")
-    .then((response) => response.json())
-    .then((data) => (companies = data));
+  const companies = await fetch("http://localhost:8080/api/company/names", {
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  }).then((response) => response.json());
   return companies;
 };

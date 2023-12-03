@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useState, useEffect } from "react";
 import { toBase64 } from "../../../helper/ImageConverter";
 
-const ImageField = forwardRef(({ imageBytes, setValue }) => {
+const ImageField = forwardRef(({ imageBytes, setValue, name }) => {
   const fileInputRef = useRef({});
 
   const [imageSource, setImageSource] = useState("");
@@ -22,7 +22,7 @@ const ImageField = forwardRef(({ imageBytes, setValue }) => {
     setImageSource(base64);
     const index = base64.indexOf(",");
     const res = base64.substring(index + 1, base64.length);
-    setValue("image", res);
+    setValue(name, res);
   };
 
   return (

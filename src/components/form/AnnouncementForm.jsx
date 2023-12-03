@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import TextField from "./field/TextField";
 import TextAreaField from "./field/TextAreaField";
@@ -7,9 +7,17 @@ import DateTimeInput from "./field/DateTimeField";
 import CurrencyField from "./field/CurrencyField";
 import { useNavigate } from "react-router";
 import ImageField from "./field/ImageField";
+import SelectField from "./field/SelectField";
+import { getCompanyNames } from "../../helper/RequestHelper";
 
 function AnnouncementForm({ data, categories, basePage, onSubmit }) {
   const navigate = useNavigate();
+
+  const [companies, setCompanies] = useState([]);
+
+  useEffect(() => {
+    getCompanyNames().then((data) => setCompanies(data));
+  }, [])  
 
   const { register, handleSubmit, reset, control, setValue } = useForm({
     defaultValues: data,
@@ -24,7 +32,7 @@ function AnnouncementForm({ data, categories, basePage, onSubmit }) {
     reset(data);
   };
 
-  return (
+  return companies && (
     <div className="container ">
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -32,7 +40,7 @@ function AnnouncementForm({ data, categories, basePage, onSubmit }) {
       >
         <div>
           <TextField label="Заголовок" {...register("title")} />
-          <TextField label="Організатор" {...register("companyName")} />
+          <SelectField label="Організатор" data={companies} control={control} name="companyId"/>
           <TextAreaField
             label="Текст оголошення"
             rows="27"
@@ -42,7 +50,7 @@ function AnnouncementForm({ data, categories, basePage, onSubmit }) {
         </div>
         <div className="d-flex flex-column w-50">
           <div className="d-flex justify-content-center">
-            <ImageField imageBytes={data.image} setValue={setValue} />
+            <ImageField imageBytes={data.image} setValue={setValue} name={"image"} />
           </div>
           <CategoryField
             label="Категорії"
@@ -53,7 +61,7 @@ function AnnouncementForm({ data, categories, basePage, onSubmit }) {
           <TextField label="Локація" {...register("location")} />
           <DateTimeInput
             label="Дата і час проведення"
-            {...register("startTime")}
+            {...register("startDate")}
           />
           <CurrencyField label="Ціна участі" {...register("price")} />
           <TextField
