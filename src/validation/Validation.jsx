@@ -2,7 +2,7 @@ import ApplicationHeader from "../components/menu/ApplicationHeader";
 import AnnouncementForm from "../components/form/AnnouncementForm";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { createAnnouncement, getAnnouncement } from "./helper/RequestHelper";
+import { createAnnouncement, deleteAnnouncement, getAnnouncement } from "./helper/RequestHelper";
 import { getAllCategories } from "../helper/RequestHelper";
 
 const Validation = () => {
@@ -20,7 +20,9 @@ const Validation = () => {
 
   function onSubmit(data) {
     data.id = "";
-    createAnnouncement(data).then(() => navigate(basePage));
+    createAnnouncement(data).then((response => {if (response.status === 201) {
+      deleteAnnouncement(pathParam.id).then(() => navigate(basePage));
+    }}));
   }
 
   return (

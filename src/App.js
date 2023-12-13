@@ -25,7 +25,7 @@ function App() {
       <Routes>
         {isAuthenticated ? (
           <>
-            <Route path="home" element={<MainPage />} />
+            {/* <Route path="home" element={<MainPage />} /> */}
             <Route path="validation" element={<Outlet />}>
               <Route index element={<AnnouncementList />} />
               <Route path=":id" element={<Validation />} />
@@ -40,7 +40,7 @@ function App() {
               <Route path=":id" element={<EditCompany />} />
               <Route path="create" element={<CreateCompany />} />
             </Route>
-            <Route path="*" element={<Navigate to={"/home"} />} />
+            <Route path="*" element={<Navigate to={"/validation"} />} />
           </>
         ) : (
           <>

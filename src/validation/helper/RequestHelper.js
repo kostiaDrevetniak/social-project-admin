@@ -2,7 +2,7 @@ const uncheckedAnnouncementUrl =
   "http://localhost:8080/api/announcement/unchecked";
 
 export const createAnnouncement = async (data) => {
-  await fetch("http://localhost:8080/api/announcement/checked", {
+  const response = await fetch("http://localhost:8080/api/announcement/checked", {
     method: "POST",
     headers: {
       Accept: "application/json, text/plain, */*",
@@ -10,9 +10,8 @@ export const createAnnouncement = async (data) => {
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
     body: JSON.stringify(data),
-  })
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+  });
+  return response;
 };
 
 export const getAnnouncement = async (id) => {
@@ -31,8 +30,9 @@ export const getTitles = async (companyName) => {
 };
 
 export const deleteAnnouncement = async (id) => {
+  console.log(id);
   await fetch(`${uncheckedAnnouncementUrl}/${id}`, {
     method: "DELETE",
-    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    headers: {Authorization: `Bearer ${sessionStorage.getItem("token")}`,}
   });
 };

@@ -13,7 +13,6 @@ const EditCompany = () => {
 
   useEffect(() => {
     getCompany(pathParam.id).then((data) => {
-      data.logo = "";
       setCompany(data);
     });
   }, [pathParam.id]);

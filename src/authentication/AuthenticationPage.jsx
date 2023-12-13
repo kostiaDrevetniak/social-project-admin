@@ -26,8 +26,8 @@ const AuthenticationPage = () => {
     login(data).then((response) => {
       window.sessionStorage.setItem("token", response.token);
       window.sessionStorage.setItem("role", response.role);
+      navigate(0);
     });    
-    navigate(0);
   }
 
   return (
