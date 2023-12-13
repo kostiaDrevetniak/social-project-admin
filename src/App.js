@@ -16,6 +16,9 @@ import CreateAnnouncement from "./announcement/CreateAnnouncement";
 import CompaniesList from "./company";
 import EditCompany from "./company/EditCompany";
 import CreateCompany from "./company/CreateCompany";
+import CategoryList from "./category";
+import UpdateCategory from "./category/UpdateCategory";
+import CreateCategory from "./category/CreateCategory";
 
 function App() {
   const isAuthenticated = window.sessionStorage.getItem("token");
@@ -39,6 +42,11 @@ function App() {
               <Route index element={<CompaniesList />} />
               <Route path=":id" element={<EditCompany />} />
               <Route path="create" element={<CreateCompany />} />
+            </Route>
+            <Route path="categories" element={<Outlet />}>
+              <Route index element={<CategoryList />} />
+              <Route path=":id" element={<UpdateCategory />} />
+              <Route path="create" element={<CreateCategory />} />
             </Route>
             <Route path="*" element={<Navigate to={"/validation"} />} />
           </>

@@ -2,13 +2,12 @@ import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const ApplicationHeader = () => {
-
   const navigate = useNavigate();
 
   const logout = () => {
     window.sessionStorage.setItem("token", "");
     navigate(0);
-  } 
+  };
 
   return (
     <header className="bg-body-secondary">
@@ -35,11 +34,14 @@ const ApplicationHeader = () => {
                 Організації
               </Link>
             </li>
+            <li>
+              <Link to="/categories" className="nav-link">
+                Категорії
+              </Link>
+            </li>
           </ul>
           <div>
-            <button onClick={logout}>
-              Вийти
-            </button>
+            <button onClick={logout}>Вийти</button>
           </div>
         </nav>
       </div>
